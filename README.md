@@ -36,7 +36,7 @@ The system's backbone. It ensures that when a complaint is filed, the user's per
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/yourusername/complaint-system.git
+    git clone https://github.com/lloydDevs/complaint-system.git
     cd complaint-system
     ```
 
@@ -54,3 +54,29 @@ The system's backbone. It ensures that when a complaint is filed, the user's per
     *Configure your database settings in the `.env` file.*
 
 4.  **Run Migrations**
+    ```bash
+    php artisan migrate
+    ```
+
+5.  **Compile Assets & Start Server**
+    ```bash
+    npm run dev
+    # In a new terminal
+    php artisan serve
+    ```
+
+---
+
+## 📂 Project Structure
+
+*   `app/Models/Complaint.php`: Handles the logic for anonymous ticket storage.
+*   `resources/views/layouts/`: Contains the **Emerald-themed** minimalist layouts.
+*   `resources/views/dashboard.blade.php`: The dual-pane "Activity & Create" interface.
+*   `tailwind.config.js`: Custom configuration for the green-brand system.
+
+---
+
+## 📄 License
+This system is developed for the **Department of Agriculture** and related agencies. Licensed under the MIT License.
+
+---
