@@ -1,58 +1,593 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+git clone https://github.com/yourusername/complaint-system.git
+    cd complaint-system
+    ```
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+2.  **Install Dependencies**
+    This README is tailored for your specific setup using **Laravel 12**, **PHP 8.4**, and the **Green (Emerald)** industrial theme. It highlights the **Identity Shield** as the core value of the system.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# 🛡️ Anonymous Support & Complaint System
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+An industrial-grade, privacy-first portal designed for secure communication between citizens and government agencies. Built specifically for high-stakes reporting where **sender anonymity** is the top priority.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+![Theme](https://img.shields.io/badge/Theme-Emerald_Green-emerald)
+![Laravel](https://img.shields.io/badge/Laravel-12.x-red)
+![PHP](https://img.shields.io/badge/PHP-8.4-blue)
 
-## Learning Laravel
+## 🌟 Key Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1. The Identity Shield (Core)
+The system's backbone. It ensures that when a complaint is filed, the user's personal profile and name are **completely decoupled** from the report. Admins receive the complaint via a unique **Case Reference Number** (e.g., `#CN-882X`), keeping your identity 100% invisible.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. Intelligence & Analytics
+*   **Visual Data Analytics:** Interactive charts and graphs that visualize complaint trends and agency performance.
+*   **Global Discovery:** A powerful search engine to find records by keywords or reference codes.
+*   **Dynamic Filtering:** Sift through data by Status (Pending/Resolved), Date, or Department.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 3. Industrial Design
+*   **Adaptive Emerald Theme:** A minimalist "Green" aesthetic optimized for both high-glare office environments and late-night field use (Dark/Light mode support).
+*   **Smart Agency Routing:** Specifically configured for Philippine Government Agencies, including regional offices (e.g., MIMAROPA branches).
+*   **Mobile-First:** Fully responsive layout for filing reports via smartphone or tablet.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## 🚀 Technical Stack
 
-```bash
-composer require laravel/boost --dev
+*   **Backend:** Laravel 12 & PHP 8.4
+*   **Frontend:** Tailwind CSS (Emerald Palette) & Alpine.js
+*   **Database:** MySQL / MariaDB
+*   **Tooling:** Vite for lightning-fast asset bundling
 
-php artisan boost:install
-```
+---
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## 🛠️ Installation & Setup
 
-## Contributing
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/yourusername/complaint-system.git
+    cd complaint-system
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    npm install
+    ```
 
-## Code of Conduct
+3.  **Environment Configuration**
+    This README is tailored for your specific setup using **Laravel 12**, **PHP 8.4**, and the **Green (Emerald)** industrial theme. It highlights the **Identity Shield** as the core value of the system.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+# 🛡️ Anonymous Support & Complaint System
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+An industrial-grade, privacy-first portal designed for secure communication between citizens and government agencies. Built specifically for high-stakes reporting where **sender anonymity** is the top priority.
 
-## License
+![Theme](https://img.shields.io/badge/Theme-Emerald_Green-emerald)
+![Laravel](https://img.shields.io/badge/Laravel-12.x-red)
+![PHP](https://img.shields.io/badge/PHP-8.4-blue)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🌟 Key Features
+
+### 1. The Identity Shield (Core)
+The system's backbone. It ensures that when a complaint is filed, the user's personal profile and name are **completely decoupled** from the report. Admins receive the complaint via a unique **Case Reference Number** (e.g., `#CN-882X`), keeping your identity 100% invisible.
+
+### 2. Intelligence & Analytics
+*   **Visual Data Analytics:** Interactive charts and graphs that visualize complaint trends and agency performance.
+*   **Global Discovery:** A powerful search engine to find records by keywords or reference codes.
+*   **Dynamic Filtering:** Sift through data by Status (Pending/Resolved), Date, or Department.
+
+### 3. Industrial Design
+*   **Adaptive Emerald Theme:** A minimalist "Green" aesthetic optimized for both high-glare office environments and late-night field use (Dark/Light mode support).
+*   **Smart Agency Routing:** Specifically configured for Philippine Government Agencies, including regional offices (e.g., MIMAROPA branches).
+*   **Mobile-First:** Fully responsive layout for filing reports via smartphone or tablet.
+
+---
+
+## 🚀 Technical Stack
+
+*   **Backend:** Laravel 12 & PHP 8.4
+*   **Frontend:** Tailwind CSS (Emerald Palette) & Alpine.js
+*   **Database:** MySQL / MariaDB
+*   **Tooling:** Vite for lightning-fast asset bundling
+
+---
+
+## 🛠️ Installation & Setup
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/yourusername/complaint-system.git
+    cd complaint-system
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    npm install
+    ```
+
+3.  **Environment Configuration**
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+    *Configure your database settings in the `.env` file.*
+
+4.  **Run Migrations**
+    This README is tailored for your specific setup using **Laravel 12**, **PHP 8.4**, and the **Green (Emerald)** industrial theme. It highlights the **Identity Shield** as the core value of the system.
+
+---
+
+# 🛡️ Anonymous Support & Complaint System
+
+An industrial-grade, privacy-first portal designed for secure communication between citizens and government agencies. Built specifically for high-stakes reporting where **sender anonymity** is the top priority.
+
+![Theme](https://img.shields.io/badge/Theme-Emerald_Green-emerald)
+![Laravel](https://img.shields.io/badge/Laravel-12.x-red)
+![PHP](https://img.shields.io/badge/PHP-8.4-blue)
+
+## 🌟 Key Features
+
+### 1. The Identity Shield (Core)
+The system's backbone. It ensures that when a complaint is filed, the user's personal profile and name are **completely decoupled** from the report. Admins receive the complaint via a unique **Case Reference Number** (e.g., `#CN-882X`), keeping your identity 100% invisible.
+
+### 2. Intelligence & Analytics
+*   **Visual Data Analytics:** Interactive charts and graphs that visualize complaint trends and agency performance.
+*   **Global Discovery:** A powerful search engine to find records by keywords or reference codes.
+*   **Dynamic Filtering:** Sift through data by Status (Pending/Resolved), Date, or Department.
+
+### 3. Industrial Design
+*   **Adaptive Emerald Theme:** A minimalist "Green" aesthetic optimized for both high-glare office environments and late-night field use (Dark/Light mode support).
+*   **Smart Agency Routing:** Specifically configured for Philippine Government Agencies, including regional offices (e.g., MIMAROPA branches).
+*   **Mobile-First:** Fully responsive layout for filing reports via smartphone or tablet.
+
+---
+
+## 🚀 Technical Stack
+
+*   **Backend:** Laravel 12 & PHP 8.4
+*   **Frontend:** Tailwind CSS (Emerald Palette) & Alpine.js
+*   **Database:** MySQL / MariaDB
+*   **Tooling:** Vite for lightning-fast asset bundling
+
+---
+
+## 🛠️ Installation & Setup
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/yourusername/complaint-system.git
+    cd complaint-system
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    npm install
+    ```
+
+3.  **Environment Configuration**
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+    *Configure your database settings in the `.env` file.*
+
+4.  **Run Migrations**
+    ```bash
+    php artisan migrate
+    ```
+
+5.  **Compile Assets & Start Server**
+    This README is tailored for your specific setup using **Laravel 12**, **PHP 8.4**, and the **Green (Emerald)** industrial theme. It highlights the **Identity Shield** as the core value of the system.
+
+---
+
+# 🛡️ Anonymous Support & Complaint System
+
+An industrial-grade, privacy-first portal designed for secure communication between citizens and government agencies. Built specifically for high-stakes reporting where **sender anonymity** is the top priority.
+
+![Theme](https://img.shields.io/badge/Theme-Emerald_Green-emerald)
+![Laravel](https://img.shields.io/badge/Laravel-12.x-red)
+![PHP](https://img.shields.io/badge/PHP-8.4-blue)
+
+## 🌟 Key Features
+
+### 1. The Identity Shield (Core)
+The system's backbone. It ensures that when a complaint is filed, the user's personal profile and name are **completely decoupled** from the report. Admins receive the complaint via a unique **Case Reference Number** (e.g., `#CN-882X`), keeping your identity 100% invisible.
+
+### 2. Intelligence & Analytics
+*   **Visual Data Analytics:** Interactive charts and graphs that visualize complaint trends and agency performance.
+*   **Global Discovery:** A powerful search engine to find records by keywords or reference codes.
+*   **Dynamic Filtering:** Sift through data by Status (Pending/Resolved), Date, or Department.
+
+### 3. Industrial Design
+*   **Adaptive Emerald Theme:** A minimalist "Green" aesthetic optimized for both high-glare office environments and late-night field use (Dark/Light mode support).
+*   **Smart Agency Routing:** Specifically configured for Philippine Government Agencies, including regional offices (e.g., MIMAROPA branches).
+*   **Mobile-First:** Fully responsive layout for filing reports via smartphone or tablet.
+
+---
+
+## 🚀 Technical Stack
+
+*   **Backend:** Laravel 12 & PHP 8.4
+*   **Frontend:** Tailwind CSS (Emerald Palette) & Alpine.js
+*   **Database:** MySQL / MariaDB
+*   **Tooling:** Vite for lightning-fast asset bundling
+
+---
+
+## 🛠️ Installation & Setup
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/yourusername/complaint-system.git
+    cd complaint-system
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    npm install
+    ```
+
+3.  **Environment Configuration**
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+    *Configure your database settings in the `.env` file.*
+
+4.  **Run Migrations**
+    ```bash
+    php artisan migrate
+    ```
+
+5.  **Compile Assets & Start Server**
+    ```bash
+    npm run dev
+    # In a new terminal
+    php artisan serve
+    ```
+
+---
+
+## 📂 Project Structure
+
+*   `app/Models/Complaint.php`: Handles the logic for anonymous ticket storage.
+*   This README is tailored for your specific setup using **Laravel 12**, **PHP 8.4**, and the **Green (Emerald)** industrial theme. It highlights the **Identity Shield** as the core value of the system.
+
+---
+
+# 🛡️ Anonymous Support & Complaint System
+
+An industrial-grade, privacy-first portal designed for secure communication between citizens and government agencies. Built specifically for high-stakes reporting where **sender anonymity** is the top priority.
+
+![Theme](https://img.shields.io/badge/Theme-Emerald_Green-emerald)
+![Laravel](https://img.shields.io/badge/Laravel-12.x-red)
+![PHP](https://img.shields.io/badge/PHP-8.4-blue)
+
+## 🌟 Key Features
+
+### 1. The Identity Shield (Core)
+The system's backbone. It ensures that when a complaint is filed, the user's personal profile and name are **completely decoupled** from the report. Admins receive the complaint via a unique **Case Reference Number** (e.g., `#CN-882X`), keeping your identity 100% invisible.
+
+### 2. Intelligence & Analytics
+*   **Visual Data Analytics:** Interactive charts and graphs that visualize complaint trends and agency performance.
+*   **Global Discovery:** A powerful search engine to find records by keywords or reference codes.
+*   **Dynamic Filtering:** Sift through data by Status (Pending/Resolved), Date, or Department.
+
+### 3. Industrial Design
+*   **Adaptive Emerald Theme:** A minimalist "Green" aesthetic optimized for both high-glare office environments and late-night field use (Dark/Light mode support).
+*   **Smart Agency Routing:** Specifically configured for Philippine Government Agencies, including regional offices (e.g., MIMAROPA branches).
+*   **Mobile-First:** Fully responsive layout for filing reports via smartphone or tablet.
+
+---
+
+## 🚀 Technical Stack
+
+*   **Backend:** Laravel 12 & PHP 8.4
+*   **Frontend:** Tailwind CSS (Emerald Palette) & Alpine.js
+*   **Database:** MySQL / MariaDB
+*   **Tooling:** Vite for lightning-fast asset bundling
+
+---
+
+## 🛠️ Installation & Setup
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/yourusername/complaint-system.git
+    cd complaint-system
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    npm install
+    ```
+
+3.  **Environment Configuration**
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+    *Configure your database settings in the `.env` file.*
+
+4.  **Run Migrations**
+    ```bash
+    php artisan migrate
+    ```
+
+5.  **Compile Assets & Start Server**
+    ```bash
+    npm run dev
+    # In a new terminal
+    php artisan serve
+    ```
+
+---
+
+## 📂 Project Structure
+
+*   `app/Models/Complaint.php`: Handles the logic for anonymous ticket storage.
+*   `resources/views/layouts/`: Contains the **Emerald-themed** minimalist layouts.
+*   `resources/views/dashboard.blade.php`: TheThis README is tailored for your specific setup using **Laravel 12**, **PHP 8.4**, and the **Green (Emerald)** industrial theme. It highlights the **Identity Shield** as the core value of the system.
+
+---
+
+# 🛡️ Anonymous Support & Complaint System
+
+An industrial-grade, privacy-first portal designed for secure communication between citizens and government agencies. Built specifically for high-stakes reporting where **sender anonymity** is the top priority.
+
+![Theme](https://img.shields.io/badge/Theme-Emerald_Green-emerald)
+![Laravel](https://img.shields.io/badge/Laravel-12.x-red)
+![PHP](https://img.shields.io/badge/PHP-8.4-blue)
+
+## 🌟 Key Features
+
+### 1. The Identity Shield (Core)
+The system's backbone. It ensures that when a complaint is filed, the user's personal profile and name are **completely decoupled** from the report. Admins receive the complaint via a unique **Case Reference Number** (e.g., `#CN-882X`), keeping your identity 100% invisible.
+
+### 2. Intelligence & Analytics
+*   **Visual Data Analytics:** Interactive charts and graphs that visualize complaint trends and agency performance.
+*   **Global Discovery:** A powerful search engine to find records by keywords or reference codes.
+*   **Dynamic Filtering:** Sift through data by Status (Pending/Resolved), Date, or Department.
+
+### 3. Industrial Design
+*   **Adaptive Emerald Theme:** A minimalist "Green" aesthetic optimized for both high-glare office environments and late-night field use (Dark/Light mode support).
+*   **Smart Agency Routing:** Specifically configured for Philippine Government Agencies, including regional offices (e.g., MIMAROPA branches).
+*   **Mobile-First:** Fully responsive layout for filing reports via smartphone or tablet.
+
+---
+
+## 🚀 Technical Stack
+
+*   **Backend:** Laravel 12 & PHP 8.4
+*   **Frontend:** Tailwind CSS (Emerald Palette) & Alpine.js
+*   **Database:** MySQL / MariaDB
+*   **Tooling:** Vite for lightning-fast asset bundling
+
+---
+
+## 🛠️ Installation & Setup
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/yourusername/complaint-system.git
+    cd complaint-system
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    npm install
+    ```
+
+3.  **Environment Configuration**
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+    *Configure your database settings in the `.env` file.*
+
+4.  **Run Migrations**
+    ```bash
+    php artisan migrate
+    ```
+
+5.  **Compile Assets & Start Server**
+    ```bash
+    npm run dev
+    # In a new terminal
+    php artisan serve
+    ```
+
+---
+
+## 📂 Project Structure
+
+*   `app/Models/Complaint.php`: Handles the logic for anonymous ticket storage.
+*   `resources/views/layouts/`: Contains the **Emerald-themed** minimalist layouts.
+*   `resources/views/dashboard.blade.php`: The dual-pane "Activity & Create" interface.
+*   `tailwind.config.js`: Custom configuration for the green-brand system.
+
+---
+
+##This README is tailored for your specific setup using **Laravel 12**, **PHP 8.4**, and the **Green (Emerald)** industrial theme. It highlights the **Identity Shield** as the core value of the system.
+
+---
+
+# 🛡️ Anonymous Support & Complaint System
+
+An industrial-grade, privacy-first portal designed for secure communication between citizens and government agencies. Built specifically for high-stakes reporting where **sender anonymity** is the top priority.
+
+![Theme](https://img.shields.io/badge/Theme-Emerald_Green-emerald)
+![Laravel](https://img.shields.io/badge/Laravel-12.x-red)
+![PHP](https://img.shields.io/badge/PHP-8.4-blue)
+
+## 🌟 Key Features
+
+### 1. The Identity Shield (Core)
+The system's backbone. It ensures that when a complaint is filed, the user's personal profile and name are **completely decoupled** from the report. Admins receive the complaint via a unique **Case Reference Number** (e.g., `#CN-882X`), keeping your identity 100% invisible.
+
+### 2. Intelligence & Analytics
+*   **Visual Data Analytics:** Interactive charts and graphs that visualize complaint trends and agency performance.
+*   **Global Discovery:** A powerful search engine to find records by keywords or reference codes.
+*   **Dynamic Filtering:** Sift through data by Status (Pending/Resolved), Date, or Department.
+
+### 3. Industrial Design
+*   **Adaptive Emerald Theme:** A minimalist "Green" aesthetic optimized for both high-glare office environments and late-night field use (Dark/Light mode support).
+*   **Smart Agency Routing:** Specifically configured for Philippine Government Agencies, including regional offices (e.g., MIMAROPA branches).
+*   **Mobile-First:** Fully responsive layout for filing reports via smartphone or tablet.
+
+---
+
+## 🚀 Technical Stack
+
+*   **Backend:** Laravel 12 & PHP 8.4
+*   **Frontend:** Tailwind CSS (Emerald Palette) & Alpine.js
+*   **Database:** MySQL / MariaDB
+*   **Tooling:** Vite for lightning-fast asset bundling
+
+---
+
+## 🛠️ Installation & Setup
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/yourusername/complaint-system.git
+    cd complaint-system
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    npm install
+    ```
+
+3.  **Environment Configuration**
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+    *Configure your database settings in the `.env` file.*
+
+4.  **Run Migrations**
+    ```bash
+    php artisan migrate
+    ```
+
+5.  **Compile Assets & Start Server**
+    ```bash
+    npm run dev
+    # In a new terminal
+    php artisan serve
+    ```
+
+---
+
+## 📂 Project Structure
+
+*   `app/Models/Complaint.php`: Handles the logic for anonymous ticket storage.
+*   `resources/views/layouts/`: Contains the **Emerald-themed** minimalist layouts.
+*   `resources/views/dashboard.blade.php`: The dual-pane "Activity & Create" interface.
+*   `tailwind.config.js`: Custom configuration for the green-brand system.
+
+---
+
+## 📄 License
+This system is developed for the **Department of Agriculture** and related agencies. Licensed under the MIT License.
+
+---
+
+> **Note:** ThisThis README is tailored for your specific setup using **Laravel 12**, **PHP 8.4**, and the **Green (Emerald)** industrial theme. It highlights the **Identity Shield** as the core value of the system.
+
+---
+
+# 🛡️ Anonymous Support & Complaint System
+
+An industrial-grade, privacy-first portal designed for secure communication between citizens and government agencies. Built specifically for high-stakes reporting where **sender anonymity** is the top priority.
+
+![Theme](https://img.shields.io/badge/Theme-Emerald_Green-emerald)
+![Laravel](https://img.shields.io/badge/Laravel-12.x-red)
+![PHP](https://img.shields.io/badge/PHP-8.4-blue)
+
+## 🌟 Key Features
+
+### 1. The Identity Shield (Core)
+The system's backbone. It ensures that when a complaint is filed, the user's personal profile and name are **completely decoupled** from the report. Admins receive the complaint via a unique **Case Reference Number** (e.g., `#CN-882X`), keeping your identity 100% invisible.
+
+### 2. Intelligence & Analytics
+*   **Visual Data Analytics:** Interactive charts and graphs that visualize complaint trends and agency performance.
+*   **Global Discovery:** A powerful search engine to find records by keywords or reference codes.
+*   **Dynamic Filtering:** Sift through data by Status (Pending/Resolved), Date, or Department.
+
+### 3. Industrial Design
+*   **Adaptive Emerald Theme:** A minimalist "Green" aesthetic optimized for both high-glare office environments and late-night field use (Dark/Light mode support).
+*   **Smart Agency Routing:** Specifically configured for Philippine Government Agencies, including regional offices (e.g., MIMAROPA branches).
+*   **Mobile-First:** Fully responsive layout for filing reports via smartphone or tablet.
+
+---
+
+## 🚀 Technical Stack
+
+*   **Backend:** Laravel 12 & PHP 8.4
+*   **Frontend:** Tailwind CSS (Emerald Palette) & Alpine.js
+*   **Database:** MySQL / MariaDB
+*   **Tooling:** Vite for lightning-fast asset bundling
+
+---
+
+## 🛠️ Installation & Setup
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/yourusername/complaint-system.git
+    cd complaint-system
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    npm install
+    ```
+
+3.  **Environment Configuration**
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+    *Configure your database settings in the `.env` file.*
+
+4.  **Run Migrations**
+    ```bash
+    php artisan migrate
+    ```
+
+5.  **Compile Assets & Start Server**
+    ```bash
+    npm run dev
+    # In a new terminal
+    php artisan serve
+    ```
+
+---
+
+## 📂 Project Structure
+
+*   `app/Models/Complaint.php`: Handles the logic for anonymous ticket storage.
+*   `resources/views/layouts/`: Contains the **Emerald-themed** minimalist layouts.
+*   `resources/views/dashboard.blade.php`: The dual-pane "Activity & Create" interface.
+*   `tailwind.config.js`: Custom configuration for the green-brand system.
+
+---
+
+## 📄 License
+This system is developed for the **Department of Agriculture** and related agencies. Licensed under the MIT License.
+
+---
+
+> **Note:** This system is part of the "Cradle Logic" suite of industrial automation and management tools. Developed with a focus on transparency and accountability.
