@@ -5,7 +5,7 @@ export default defineConfig({
     server: {
         host: '0.0.0.0',
         hmr: {
-            host: '172.16.16.155', // Replace with your computer's IP
+            host: '192.168.0.134', // Replace with your computer's IP
         },
     },
     plugins: [

@@ -34,6 +34,16 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
+        // Log the profile update event
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'user_name' => auth()->user()->name,
+            'action' => 'Profile Updated',
+            'description' => 'User updated their account credentials/profile settings.',
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+        ]);
+
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -48,12 +58,27 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        // Cache user identities right before deletion removes the database records
+        $userId = $user->id;
+        $userName = $user->name;
+        $userEmail = $user->email;
+
         Auth::logout();
 
         $user->delete();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        // Log the account deletion
+        ActivityLog::create([
+            'user_id' => null, // Set to null since database item is gone, keeping structural constraints intact
+            'user_name' => $userName,
+            'action' => 'Delete Account',
+            'description' => "Account belonging to {$userName} ({$userEmail}) was permanently deleted from the system.",
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+        ]);
 
         return Redirect::to('/');
     }

@@ -136,9 +136,77 @@
 
             <div
                 class="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm">
-                <div class="px-6 py-4 border-b border-gray-50 dark:border-gray-800 flex justify-between items-center">
-                    <h3 class="text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-tight">Master
-                        Complaint List</h3>
+                <div
+                    class="px-6 py-5 border-b border-gray-50 dark:border-gray-800 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-white dark:bg-gray-900">
+                    <!-- Title Section -->
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                        </div>
+                        <h3 class="text-sm font-black text-gray-800 dark:text-gray-200 uppercase tracking-widest">
+                            Control Console
+                        </h3>
+                    </div>
+
+                    <!-- Quick Action Filters -->
+                    <div class="flex flex-wrap items-center gap-3">
+
+                        <!-- HIGH URGENCY: NEEDS ATTENTION -->
+                        <a href="{{ route('admin.dashboard', ['status' => 'pending']) }}"
+                            class="group relative flex items-center gap-2.5 bg-red-600 px-4 py-2 rounded-xl transition-all active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] animate-pulse">
+
+                            <div class="flex items-center gap-2">
+                                <span class="relative flex h-2.5 w-2.5">
+                                    <span
+                                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+                                </span>
+                                <span class="text-[10px] font-black text-white uppercase tracking-tighter">Needs
+                                    Attention</span>
+                            </div>
+
+                            <div
+                                class="bg-white text-red-600 text-[11px] font-black px-2 py-0.5 rounded-lg shadow-inner">
+                                {{ $data['pending'] }}
+                            </div>
+
+                            <!-- Urgent Tooltip (Optional visual flare) -->
+                            <span
+                                class="absolute -top-2 -right-1 bg-black text-[8px] text-white font-bold px-1.5 py-0.5 rounded shadow-lg border border-red-500 animate-bounce">
+                                URGENT
+                            </span>
+                        </a>
+
+                        <!-- Viewed (Neutral) -->
+                        <a href="{{ route('admin.dashboard', ['status' => 'viewed']) }}"
+                            class="group flex items-center gap-2.5 bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-900/30 px-3 py-2 rounded-xl transition-all hover:bg-indigo-100 dark:hover:bg-indigo-900/20 active:scale-95">
+                            <span class="h-2 w-2 rounded-full bg-indigo-500"></span>
+                            <span
+                                class="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Viewed</span>
+                            <div class="bg-indigo-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-md">
+                                {{ $data['viewed'] }}
+                            </div>
+                        </a>
+
+                        <!-- Resolved (Completed) -->
+                        <a href="{{ route('admin.dashboard', ['status' => 'resolved']) }}"
+                            class="group flex items-center gap-2.5 bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-900/30 px-3 py-2 rounded-xl transition-all hover:bg-emerald-100 dark:hover:bg-emerald-900/20 active:scale-95">
+                            <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span
+                                class="text-[10px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Resolved</span>
+                            <div class="bg-emerald-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-md">
+                                {{ $data['resolved'] }}
+                            </div>
+                        </a>
+
+                    </div>
                 </div>
 
                 <div class="overflow-x-auto">

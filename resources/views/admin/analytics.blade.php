@@ -102,7 +102,7 @@
                     <p class="text-xs text-gray-500 mt-1">Comparison of total complaints received per agency</p>
                 </div>
                 <div class="h-[400px]">
-                    <canvas id="agencyChart"></canvas>
+                    <canvas id="departmentChart"></canvas>
                 </div>
             </div>
 
@@ -115,12 +115,17 @@
         const labelColor = isDark ? '#64748b' : '#94a3b8';
         const gridColor = isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)';
 
-        // Pre-parse the data to ensure no syntax errors occur inside the Chart objects
+        // Brand Colors (Emerald Green)
+        const primaryGreen = '#10B981'; // Emerald 500
+        const darkGreen = '#059669'; // Emerald 600
+        const lightGreen = 'rgba(16, 185, 129, 0.15)';
+
+        // Pre-parse the data
         const statusDataRaw = @json($statusData);
         const trendMonths = @json($months);
         const trendCounts = @json($monthlyCounts);
-        const agencyLabels = @json($agencyData['labels']);
-        const agencyCounts = @json($agencyData['counts']);
+        const departmentLabels = @json($departmentData['labels']);
+        const departmentCounts = @json($departmentData['counts']);
 
         Chart.defaults.color = labelColor;
         Chart.defaults.font.family = "'Plus Jakarta Sans', 'Inter', sans-serif";
@@ -134,7 +139,8 @@
                     labels: ['Pending', 'Viewed', 'Resolved'],
                     datasets: [{
                         data: Object.values(statusDataRaw),
-                        backgroundColor: ['#F59E0B', '#6366F1', '#10B981'],
+                        // Amber for Pending, Emerald 400 for Viewed, Emerald 600 for Resolved
+                        backgroundColor: ['#F59E0B', '#34D399', '#059669'],
                         borderWidth: 0,
                         hoverOffset: 20,
                         borderRadius: 10,
@@ -168,8 +174,8 @@
         if (trendCanvas) {
             const trendCtx = trendCanvas.getContext('2d');
             const trendGradient = trendCtx.createLinearGradient(0, 0, 0, 400);
-            trendGradient.addColorStop(0, 'rgba(99, 102, 241, 0.15)');
-            trendGradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+            trendGradient.addColorStop(0, lightGreen);
+            trendGradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
 
             new Chart(trendCtx, {
                 type: 'line',
@@ -178,14 +184,14 @@
                     datasets: [{
                         label: 'Inquiries',
                         data: trendCounts,
-                        borderColor: '#6366F1',
+                        borderColor: primaryGreen,
                         borderWidth: 3,
                         fill: true,
                         backgroundColor: trendGradient,
                         tension: 0.4,
                         pointRadius: 4,
                         pointHoverRadius: 6,
-                        pointBackgroundColor: '#6366F1',
+                        pointBackgroundColor: primaryGreen,
                         pointBorderColor: '#fff'
                     }]
                 },
@@ -221,20 +227,20 @@
             });
         }
 
-        // 3. Agency Horizontal Bar Chart
-        const agencyCtx = document.getElementById('agencyChart');
-        if (agencyCtx) {
-            new Chart(agencyCtx, {
+        // 3. Department Horizontal Bar Chart
+        const departmentCtx = document.getElementById('departmentChart');
+        if (departmentCtx) {
+            new Chart(departmentCtx, {
                 type: 'bar',
                 data: {
-                    labels: agencyLabels,
+                    labels: departmentLabels,
                     datasets: [{
                         label: 'Total Complaints',
-                        data: agencyCounts,
-                        backgroundColor: '#6366F1',
+                        data: departmentCounts,
+                        backgroundColor: primaryGreen,
                         borderRadius: 6,
                         barThickness: 24,
-                        hoverBackgroundColor: '#4F46E5',
+                        hoverBackgroundColor: darkGreen,
                     }]
                 },
                 options: {
@@ -246,12 +252,12 @@
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: isDark ? '#1e293b' : '#fff',
-                            titleColor: isDark ? '#fff' : '#1e293b',
+                            backgroundColor: isDark ? '#064e3b' : '#fff', // Dark emerald bg for tooltips
+                            titleColor: isDark ? '#fff' : '#064e3b',
                             padding: 12,
                             cornerRadius: 12,
                             borderWidth: 1,
-                            borderColor: isDark ? '#334155' : '#e2e8f0'
+                            borderColor: isDark ? '#065f46' : '#e2e8f0'
                         }
                     },
                     scales: {

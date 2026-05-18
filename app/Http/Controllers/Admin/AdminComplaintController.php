@@ -25,40 +25,31 @@ class AdminComplaintController extends Controller
 
         $months = [];
         $monthlyCounts = [];
-
-        // Loop through the last 6 months
         for ($i = 5; $i >= 0; $i--) {
             $date = Carbon::now()->subMonths($i);
-
-            // 1. Create the Label (e.g., "Apr")
             $months[] = $date->format('M');
-
-            // 2. Query the DB directly for this specific Month and Year
-            // This bypasses any service key-mismatch issues
             $count = Complaint::whereMonth('created_at', $date->month)
                 ->whereYear('created_at', $date->year)
                 ->count();
 
             $monthlyCounts[] = $count;
         }
-
-        // Agency Logic (remains the same)
-        $agencies = Complaint::select('agency', \DB::raw('count(*) as total'))
-            ->whereNotNull('agency')
-            ->groupBy('agency')
+        $department = Complaint::select('department', \DB::raw('count(*) as total'))
+            ->whereNotNull('department')
+            ->groupBy('department')
             ->orderBy('total', 'desc')
             ->get();
 
-        $agencyData = [
-            'labels' => $agencies->pluck('agency')->toArray(),
-            'counts' => $agencies->pluck('total')->toArray(),
+        $departmentData = [
+            'labels' => $department->pluck('department')->toArray(),
+            'counts' => $department->pluck('total')->toArray(),
         ];
 
         return view('admin.analytics', compact(
             'statusData',
             'months',
             'monthlyCounts',
-            'agencyData'
+            'departmentData'
         ));
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Complaint;
 use App\Services\ComplaintService;
 use Illuminate\Http\Request;
@@ -43,11 +44,63 @@ class ComplaintController extends Controller
             'respondent_position' => 'nullable|string|max:255',
         ]);
 
-        // Hand off the data to the service
-        $this->complaintService->createComplaint($validated);
+        // Ensure your service returns the created model instance
+        $complaint = $this->complaintService->createComplaint($validated);
 
-        return redirect()->route('dashboard')
-            ->with('success', 'Your complaint has been submitted to the designated agency.');
+        // Log complaint submission
+        ActivityLog::create([
+            'user_id' => auth()->id(), // null if an anonymous guest submits
+            'user_name' => auth()->check() ? auth()->user()->name : 'Anonymous Stakeholder',
+            'action' => 'Grievance Submitted',
+            'description' => "New complaint filed regarding '{$validated['title']}' against department '{$validated['department']}'. Generated code: {$complaint->code}",
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+        ]);
+
+        return redirect()->back()
+            ->with('success', 'Your complaint has been submitted.')
+            ->with('complaint_code', $complaint->code); // Pass the code to the session for display
+    }
+
+    public function track(Request $request)
+    {
+        // 1. Validate using the correct input name from your HTML (tracking_code)
+        $request->validate([
+            'tracking_code' => 'required|string',
+        ]);
+
+        // 2. Search by the tracking_code input
+        $complaint = Complaint::where('code', $request->tracking_code)->first();
+
+        // 3. If not found, return with an error message
+        if (! $complaint) {
+            // Log tracking lookup failure (useful for monitoring probing or mistyped codes)
+            ActivityLog::create([
+                'user_id' => auth()->id(),
+                'user_name' => auth()->check() ? auth()->user()->name : 'Guest Visitor',
+                'action' => 'Tracking Failed',
+                'description' => "Attempted to look up non-existent tracking code: '{$request->tracking_code}'",
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+            ]);
+
+            return redirect()->back()
+                ->withInput() // Keeps the code in the input field
+                ->withErrors(['tracking_code' => 'No record found with that tracking code.']);
+        }
+
+        // Log successful tracking search
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'user_name' => auth()->check() ? auth()->user()->name : 'Guest Visitor',
+            'action' => 'Grievance Tracked',
+            'description' => "Successfully queried status for complaint record #{$complaint->id} (Code: {$complaint->code}).",
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+        ]);
+
+        // 4. Return to the same welcome view with the complaint data
+        return view('guests.trackrecord', compact('complaint'));
     }
 
     /**
@@ -64,6 +117,16 @@ class ComplaintController extends Controller
             $complaint,
             $request->admin_response
         );
+
+        // Log the administrative resolution closure event
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'user_name' => auth()->user()->name,
+            'action' => 'Status Update',
+            'description' => "Resolved and closed complaint ticket #{$complaint->id} (Code: {$complaint->code}).",
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+        ]);
 
         return redirect()->route('admin.dashboard')
             ->with('success', 'Resolution sent and ticket closed.');

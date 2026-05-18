@@ -12,7 +12,7 @@ class ComplaintService
     {
         return Complaint::create([
             'user_id' => Auth::id(),
-            'code' => 'PH-'.strtoupper(Str::random(8)), // Generates unique tracking code
+            'code' => 'DA-'.strtoupper(Str::random(8)), // Generates unique tracking code
             'title' => $data['title'],
             'agency' => $data['agency'],
             'department' => $data['department'],
