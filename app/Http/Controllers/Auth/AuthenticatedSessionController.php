@@ -8,7 +8,8 @@ use App\Models\ActivityLog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View; // <-- Imported ActivityLog
+use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -25,21 +26,41 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        try {
+            // Attempt to authenticate credentials
+            $request->authenticate();
 
-        $request->session()->regenerate();
+            // If it passes, regenerate session to prevent session fixation
+            $request->session()->regenerate();
 
-        // Log successful login
-        ActivityLog::create([
-            'user_id' => auth()->id(),
-            'user_name' => auth()->user()->name,
-            'action' => 'Login',
-            'description' => 'User successfully logged into the DA-CARE MIMAROPA portal.',
-            'ip_address' => $request->ip(),
-            'user_agent' => $request->userAgent(),
-        ]);
+            // Log successful login
+            ActivityLog::create([
+                'user_id' => auth()->id(),
+                'user_name' => auth()->user()->name,
+                'action' => 'Login',
+                'description' => 'User successfully logged into the DA-CARE MIMAROPA portal.',
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+            ]);
 
-        return redirect()->intended(route('admin.dashboard', absolute: false));
+            return redirect()->intended(route('admin.dashboard', absolute: false));
+
+        } catch (ValidationException $e) {
+
+            // Log the UNSUCCESSFUL login attempt
+            ActivityLog::create([
+                'user_id' => null, // No user ID since authentication failed
+                'user_name' => 'Guest / Unauthenticated',
+                'action' => 'Failed Login',
+                // Record the exact input email string securely
+                'description' => 'Failed login attempt using email: '.$request->input('email'),
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+            ]);
+
+            // Rethrow the validation exception so Laravel displays errors to the user
+            throw $e;
+        }
     }
 
     /**
@@ -54,7 +75,6 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         // Log logout event

@@ -127,6 +127,9 @@
         const departmentLabels = @json($departmentData['labels']);
         const departmentCounts = @json($departmentData['counts']);
 
+        const predictionMonths = @json($predictionMonths);
+        const predictionCounts = @json($predictionCounts);
+
         Chart.defaults.color = labelColor;
         Chart.defaults.font.family = "'Plus Jakarta Sans', 'Inter', sans-serif";
 
@@ -169,7 +172,6 @@
             });
         }
 
-        // 2. Performance Trend (Line Chart)
         const trendCanvas = document.getElementById('trendChart');
         if (trendCanvas) {
             const trendCtx = trendCanvas.getContext('2d');
@@ -177,23 +179,57 @@
             trendGradient.addColorStop(0, lightGreen);
             trendGradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
 
+            // Merge labels: historical + prediction months
+            const allLabels = [...trendMonths, ...predictionMonths];
+
+            // Historical dataset: real values + null padding for prediction slots
+            const historicalData = [
+                ...trendCounts,
+                ...Array(predictionMonths.length).fill(null)
+            ];
+
+            // Prediction dataset: null padding for historical slots + bridge point + predictions
+            // The bridge point repeats the last historical value so the dotted line connects smoothly
+            const predictionData = [
+                ...Array(trendCounts.length - 1).fill(null),
+                trendCounts[trendCounts.length - 1], // bridge/anchor point
+                ...predictionCounts
+            ];
+
             new Chart(trendCtx, {
                 type: 'line',
                 data: {
-                    labels: trendMonths,
+                    labels: allLabels,
                     datasets: [{
-                        label: 'Inquiries',
-                        data: trendCounts,
-                        borderColor: primaryGreen,
-                        borderWidth: 3,
-                        fill: true,
-                        backgroundColor: trendGradient,
-                        tension: 0.4,
-                        pointRadius: 4,
-                        pointHoverRadius: 6,
-                        pointBackgroundColor: primaryGreen,
-                        pointBorderColor: '#fff'
-                    }]
+                            label: 'Inquiries',
+                            data: historicalData,
+                            borderColor: primaryGreen,
+                            borderWidth: 3,
+                            fill: true,
+                            backgroundColor: trendGradient,
+                            tension: 0.4,
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                            pointBackgroundColor: primaryGreen,
+                            pointBorderColor: '#fff',
+                            spanGaps: false
+                        },
+                        {
+                            label: 'Predicted',
+                            data: predictionData,
+                            borderColor: primaryGreen,
+                            borderWidth: 2,
+                            borderDash: [6, 4], // dotted line
+                            fill: false,
+                            tension: 0.4,
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: primaryGreen,
+                            pointBorderWidth: 2,
+                            spanGaps: true // draws through the null padding
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
@@ -220,7 +256,36 @@
                     },
                     plugins: {
                         legend: {
-                            display: false
+                            display: true,
+                            labels: {
+                                usePointStyle: true,
+                                generateLabels(chart) {
+                                    return [{
+                                            text: 'Inquiries',
+                                            strokeStyle: primaryGreen,
+                                            fillStyle: primaryGreen,
+                                            pointStyle: 'circle'
+                                        },
+                                        {
+                                            text: 'Predicted',
+                                            strokeStyle: primaryGreen,
+                                            fillStyle: 'transparent',
+                                            pointStyle: 'circle',
+                                            lineDash: [6, 4]
+                                        }
+                                    ];
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label(ctx) {
+                                    if (ctx.datasetIndex === 1 && ctx.dataIndex >= trendCounts.length) {
+                                        return `Predicted: ${ctx.parsed.y}`;
+                                    }
+                                    return `Inquiries: ${ctx.parsed.y}`;
+                                }
+                            }
                         }
                     }
                 }

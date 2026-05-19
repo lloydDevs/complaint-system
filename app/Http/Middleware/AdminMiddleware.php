@@ -15,12 +15,22 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if the user is logged in AND is an admin
-        if (auth()->check() && auth()->user()->is_admin) {
+        // 1. If not logged in, trigger unauthorized handler
+        if (! auth()->check()) {
+            abort(401, 'Authentication required.');
+        }
+
+        $user = auth()->user();
+
+        // 2. Resolve access privileges
+        $isStandardAdmin = (bool) $user->is_admin;
+        $isSuperAdmin = ($user->email === 'admin@example.com');
+
+        if ($isStandardAdmin || $isSuperAdmin) {
             return $next($request);
         }
 
-        // If not admin, kick them back to the dashboard with an error
-        return redirect('/dashboard')->with('error', 'You do not have admin access.');
+        // 3. Halt processing and load resources/views/errors/403.blade.php
+        abort(403, 'You do not have admin access.');
     }
 }

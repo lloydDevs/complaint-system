@@ -44,7 +44,7 @@
                             </div>
 
                             <button type="submit"
-                                class="w-full bg-gray-900 dark:bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-black py-4 rounded-xl transition-all uppercase tracking-widest shadow-lg shadow-emerald-900/10">
+                                class="w-full bg-emerald-900 dark:bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-black py-4 rounded-xl transition-all uppercase tracking-widest shadow-lg shadow-emerald-900/10">
                                 Create Admin Account
                             </button>
                         </form>
@@ -128,7 +128,7 @@
                                                     method="POST" onsubmit="return confirm('Remove admin access?');">
                                                     @csrf @method('DELETE')
                                                     <button class="text-gray-300 hover:text-red-500 transition-colors">
-                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                        <svg class="w-4 h-4" fill="none" stroke="red"
                                                             viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2"

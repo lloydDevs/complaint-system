@@ -83,18 +83,41 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         @php
+                                            // Using strtolower to ensure safe mapping regardless of string case
                                             $badgeClasses = match (strtolower($log->action)) {
-                                                'login',
+                                                // --- Session Management ---
+                                                'login'
+                                                    => 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 border border-blue-200 dark:border-blue-800/30',
+
                                                 'logout'
-                                                    => 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400',
+                                                    => 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/30',
+
+                                                'failed login'
+                                                    => 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400 font-bold border border-red-300 dark:border-red-800',
+                                                // --- View & Analytics Events (Read Only) ---
+                                                'view analytics'
+                                                    => 'bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 border border-amber-200 dark:border-amber-800/30',
+
+                                                'view dashboard index'
+                                                    => 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400 border border-purple-200 dark:border-purple-800/30',
+
+                                                'view complaint'
+                                                    => 'bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800/30',
+                                                // --- Lifecycle Transitions & Pipeline Actions ---
+                                                'open new complaint'
+                                                    => 'bg-sky-50 text-sky-700 dark:bg-sky-900/20 dark:text-sky-400 border border-sky-200 dark:border-sky-800/30',
+
                                                 'status update',
+                                                'resolve complaint',
                                                 'resolved'
-                                                    => 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400',
+                                                    => 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/30',
+                                                // --- Dangerous, Destructive, or High-Alert Actions ---
                                                 'delete',
                                                 'retaliation warning'
-                                                    => 'bg-rose-50 text-rose-700 dark:bg-rose-900/20 dark:text-rose-400',
+                                                    => 'bg-rose-50 text-rose-700 dark:bg-rose-900/20 dark:text-rose-400 border border-rose-200 dark:border-rose-800/30',
+                                                // --- Fallback State Control ---
                                                 default
-                                                    => 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
+                                                    => 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 border border-gray-200 dark:border-gray-700',
                                             };
                                         @endphp
                                         <span

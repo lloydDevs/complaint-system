@@ -5,7 +5,7 @@
             <div class="flex">
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('admin.dashboard') }}">
-                        <x-application-logo class="block h-8 w-auto fill-current text-indigo-600 dark:text-indigo-400" />
+                        <img src="{{ asset('logo/damimaropa-logo.jpg') }}" alt="Logo" class="block h-9 w-auto">
                     </a>
                 </div>
 

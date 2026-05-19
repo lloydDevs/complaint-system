@@ -714,10 +714,12 @@
                                             ];
                                         @endphp
                                         @foreach ($offices as $office)
-                                            <option value="{{ $office }}" @selected(old('office') === $office)>
-                                                {{ $office }}</option>
+                                            <option value="{{ $office }}" @selected(old('department') === $office)>
+                                                {{ $office }}
+                                            </option>
                                         @endforeach
-                                        <option value="Others" @selected(old('office') === 'Others')>Others (Please specify...)
+                                        <option value="Others" @selected(old('department') === 'Others' || (old('department') && !in_array(old('department'), $offices)))>
+                                            Others (Please specify...)
                                         </option>
                                     </select>
                                     <span class="chev">
@@ -726,6 +728,14 @@
                                         </svg>
                                     </span>
                                 </div>
+                            </div>
+
+                            <div id="otherWrap" class="field mt-3"
+                                style="display: {{ old('department') && !in_array(old('department'), $offices) ? 'block' : 'none' }};">
+                                <label>Specify Department <span class="req">*</span></label>
+                                <input type="text" id="otherInput" class="form-control"
+                                    placeholder="Type your office/department name..."
+                                    value="{{ !in_array(old('department'), $offices) ? old('department') : '' }}">
                             </div>
 
                             <div class="field field-full" id="otherWrap"
@@ -830,11 +840,34 @@
     <script>
         function toggleOther(sel) {
             const wrap = document.getElementById('otherWrap');
+            const input = document.getElementById('otherInput');
             const show = sel.value === 'Others';
-            wrap.style.display = show ? 'block' : 'none';
-            const input = wrap.querySelector('input');
-            if (!show && input) input.value = '';
+
+            if (show) {
+                wrap.style.display = 'block';
+                input.setAttribute('required', 'required');
+
+                // Switch names: text input becomes 'department', select input gets dropped
+                input.setAttribute('name', 'department');
+                sel.removeAttribute('name');
+            } else {
+                wrap.style.display = 'none';
+                input.removeAttribute('required');
+                input.value = '';
+
+                // Revert names: select input claims back 'department'
+                sel.setAttribute('name', 'department');
+                input.removeAttribute('name');
+            }
         }
+
+        // Run once on load to handle old validation fallback values gracefully
+        document.addEventListener("DOMContentLoaded", function() {
+            const selectEl = document.getElementById('officeSelect');
+            if (selectEl.value === 'Others' || selectEl.options[selectEl.selectedIndex].text.includes('Others')) {
+                toggleOther(selectEl);
+            }
+        });
 
         function updateCount() {
             const f = document.getElementById('descField');

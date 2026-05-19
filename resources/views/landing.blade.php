@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DA-CARE | Department of Agriculture</title>
+    <link rel="icon" type="image/png" href="{{ asset('logo/damimaropa-logo.jpg') }}">
     <meta name="description"
         content="DA-CARE — Complaints, Accountability, & Resolution for Everyone. The Department of Agriculture's official complaints platform." />
 
@@ -39,12 +40,6 @@
         rel="stylesheet">
 
     <style>
-        :root {
-            --da-green: #1f6b3a;
-            --da-green-dark: #16532c;
-            --da-gold: #d4a437;
-        }
-
         html {
             scroll-behavior: smooth;
         }
@@ -458,14 +453,34 @@
                         </a>
                     @endforeach
                 </nav>
-
                 <div class="flex items-center gap-3">
-                    <a href="{{ url('/login') }}"
-                        class="hidden sm:inline-flex btn-primary items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold">
-                        <i data-lucide="log-in" class="w-4 h-4"></i> Login
-                    </a>
-                    <button id="mobileToggle" class="lg:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    @auth
+                        <a href="{{ route('admin.dashboard') }}"
+                            class="hidden sm:inline-flex bg-emerald-700 hover:bg-emerald-800 text-white items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition shadow-sm">
+                            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Go to Dashboard
+                        </a>
+                    @endauth
+
+                    @guest
+                        <a href="{{ url('/login') }}"
+                            class="hidden sm:inline-flex bg-emerald-700 hover:bg-emerald-800 text-white items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition shadow-sm">
+                            <i data-lucide="log-in" class="w-4 h-4"></i> Login
+                        </a>
+                    @endguest
+
+                    <button @click="open = !open"
+                        class="lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none">
+                        <svg x-show="!open" class="w-6 h-6 text-emerald-700 dark:text-emerald-500" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                        <svg x-show="open" x-cloak class="w-6 h-6 text-emerald-700 dark:text-emerald-500"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12">
+                            </path>
+                        </svg>
                     </button>
                 </div>
             </div>
