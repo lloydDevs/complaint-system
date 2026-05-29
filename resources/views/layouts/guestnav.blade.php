@@ -27,6 +27,7 @@
                     ['Submit a Complaint', '/newcomplaint'],
                     ['Track My Complaint', '/trackrecord'],
                     ['About DA-CARE', '/about'],
+                    ['Suggestion Tree', '/suggestions'],
                 ];
             @endphp
             @foreach ($links as [$label, $href])

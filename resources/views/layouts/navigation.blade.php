@@ -14,6 +14,14 @@
                         class="text-[11px] font-bold uppercase tracking-widest transition-colors dark:text-white dark:text-white dark:hover:text-indigo-400">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('admin.suggestions.index')" :active="request()->routeIs('admin.suggestions.*')"
+                        class="text-[11px] font-bold uppercase tracking-widest transition-colors dark:text-white dark:hover:text-emerald-400">
+                        <span class="flex items-center gap-1.5">
+                            <i data-lucide="lightbulb" class="w-3.5 h-3.5"></i>
+                            {{ __('Suggestions') }}
+                        </span>
+                    </x-nav-link>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
@@ -109,6 +117,13 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('admin.suggestions.index')" :active="request()->routeIs('admin.suggestions.*')">
+                <span class="flex items-center gap-2">
+                    <i data-lucide="lightbulb" class="w-4 h-4"></i>
+                    {{ __('Suggestions') }}
+                </span>
             </x-responsive-nav-link>
         </div>
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-800">

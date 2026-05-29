@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\AdminComplaintController;
 use App\Http\Controllers\Admin\LogController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\SuggestionController as AdminSuggestionController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SuggestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +48,13 @@ Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+// Public form submission (shown inline on welcome page)
+Route::post('/suggestions', [SuggestionController::class, 'store'])->name('suggestions.store');
+Route::get('/suggestions', [SuggestionController::class, 'index'])->name('suggestions.index');
+
+// Optional standalone create page if you want /suggestions/create
+Route::get('/suggestions/create', [SuggestionController::class, 'create'])->name('suggestions.create');
+
 /*
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +81,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::delete('/users/{user}', [SettingsController::class, 'destroy'])->name('users.destroy');
         Route::get('/logs', [LogController::class, 'index'])->name('logs');
     });
+
+    Route::get('/suggestions', [AdminSuggestionController::class, 'index'])->name('suggestions.index');
+    Route::get('/suggestions/{suggestion}', [AdminSuggestionController::class, 'show'])->name('suggestions.show');
+    Route::put('/suggestions/{suggestion}', [AdminSuggestionController::class, 'update'])->name('suggestions.update');
+    Route::delete('/suggestions/{suggestion}', [AdminSuggestionController::class, 'destroy'])->name('suggestions.destroy');
 });
 
 require __DIR__.'/auth.php';

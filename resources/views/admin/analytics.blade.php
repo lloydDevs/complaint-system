@@ -9,7 +9,7 @@
                         stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
                     </svg>
-                    Back to Console
+                    Back to  
                 </a>
                 <div class="flex justify-between items-end mt-4">
                     <div>
